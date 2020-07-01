@@ -4,8 +4,10 @@
     <div class="b__contenedor-listCharacters">
       <div *ngFor="let character of characters" class="d-inline-flex m-2 p-2">
         <div class="b__contenedor-character">
-          <img class="b__img-adjust-normal" src="{{ character.image }}">
-          <p class="text-center">{{ character.name }}</p>
+          <a routerLink="{{ character.name }}">
+            <img class="b__img-adjust-normal" src="{{ character.image }}">
+            <p class="text-center">{{ character.name }}</p>
+          </a>
         </div>
       </div>
     </div>

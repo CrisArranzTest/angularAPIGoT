@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CharactersService } from '../../service/characters/characters.service';
 import { Characters } from '../../interface/characters/characters';
 
@@ -10,35 +11,32 @@ import { Characters } from '../../interface/characters/characters';
 export class DetailCharacterComponent implements OnInit {
 
   private characters: Characters;
+  private _nameSearch: string;
 
-  constructor( private char: CharactersService ) {
+  constructor( private char: CharactersService, private _route: ActivatedRoute) {
   }
             
 
   ngOnInit(){
-    this.char.getAllData().subscribe((characters: any[]) => {
-      characters.forEach(function(element){
-        if(element['image'] !== '' && element['image'] !== undefined && element['image'] !== null){
-          var listCharacters: any = {
-            name: element['name'],
-            image: element['image'],
-            age: this.checkArrayToString(element['age'],'age'),
-            culture: this.checkArrayToString(element['culture'],'0'),
-            father: this.checkValue(element['father']),
-            gender: element['gender'],
-            house: element['house'],
-            isAlive: element['alive'],
-            performer: element['actor'],
-            related: this.checkArrayToArray(element['related'],'name'),
-            religion: element['religion'],
-            siblings: element['siblings'],
-            spouse: element['spouse'],
-            titles: element['titles'],
-          };
-        }
-        this.characters.push(listCharacters);
-      }.bind(this));
-      console.log(this.characters);
+    this._nameSearch = this._route.snapshot.paramMap.get('name');
+    this.char.getCharacterData(this._nameSearch).subscribe((characters: any[]) => {
+      var listCharacters: any = {
+        name: characters['name'],
+        image: characters['image'],
+        age: this.checkArrayToString(characters['age'],'age'),
+        culture: this.checkArrayToString(characters['culture'],'0'),
+        father: this.checkValue(characters['father']),
+        gender: characters['gender'],
+        house: characters['house'],
+        isAlive: characters['alive'],
+        performer: characters['actor'],
+        related: this.checkArrayToArray(characters['related'],'name'),
+        religion: characters['religion'],
+        siblings: characters['siblings'],
+        spouse: characters['spouse'],
+        titles: characters['titles'],
+      };
+      this.characters = listCharacters;
     });
   }
 
