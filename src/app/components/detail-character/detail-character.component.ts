@@ -20,21 +20,22 @@ export class DetailCharacterComponent implements OnInit {
   ngOnInit(){
     this._nameSearch = this._route.snapshot.paramMap.get('name');
     this.char.getCharacterData(this._nameSearch).subscribe((characters: any[]) => {
+      console.log(characters);
       var listCharacters: any = {
-        name: characters['name'],
-        image: characters['image'],
+        name: this.checkValue(characters['name']),
+        image: this.checkValue(characters['image']),
         age: this.checkArrayToString(characters['age'],'age'),
         culture: this.checkArrayToString(characters['culture'],'0'),
         father: this.checkValue(characters['father']),
-        gender: characters['gender'],
-        house: characters['house'],
+        gender: this.checkValue(characters['gender']),
+        house: this.checkValue(characters['house']),
         isAlive: characters['alive'],
-        performer: characters['actor'],
+        performer: this.checkValue(characters['actor']),
         related: this.checkArrayToArray(characters['related'],'name'),
-        religion: characters['religion'],
-        siblings: characters['siblings'],
-        spouse: characters['spouse'],
-        titles: characters['titles'],
+        religion: this.checkArrayToString(characters['religion'],'0'),
+        siblings: this.checkArrayToArray(characters['siblings'],'0'),
+        spouse: this.checkArrayToString(characters['spouse'],'0'),
+        titles: this.checkArrayToArray(characters['titles'],'0'),
       };
       this.characters = listCharacters;
       console.log(this.characters);
