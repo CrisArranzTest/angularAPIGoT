@@ -19,4 +19,9 @@ ul {
 .b__listCharacter-info-list{
     height: 25rem;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.b__listCharacter-info-list::-webkit-scrollbar {
+    display: none;
 }
