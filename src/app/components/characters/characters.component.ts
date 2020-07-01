@@ -10,47 +10,63 @@ import { Characters } from '../../interface/characters/characters';
 
 export class CharactersComponent implements OnInit {
 
-  private characters: Array<Characters>;
+  private characters: Array<Characters> = [];
 
   constructor( private char: CharactersService ) {
   }
 
   ngOnInit(){
     this.char.getAllData().subscribe((characters: any[]) => {
-      let numCharacters = characters.length;
+
       let listCharacters: Characters;
-      for(let x= 0; x < numCharacters; x++){
+      characters.forEach(function(element){
         listCharacters = {
-          age: this.checkArray(characters[x]['age'],'age'),
-          culture: this.checkArray(characters[x]['culture'],'0'),
-          father: this.checkValue(characters[x]['father']),
-          gender: characters[x]['gender'],
-          house: characters[x]['house'],
-          isAlive: characters[x]['alive'],
-          name: this.checkArray(characters[x]['age'],'name'),
-          performer: characters[x]['actor'],
-          related: characters[x]['related'],
-          religion: characters[x]['religion'],
-          siblings: characters[x]['siblings'],
-          spouse: characters[x]['spouse'],
-          titles: characters[x]['titles'],
+          age: this.checkArrayToString(element['age'],'age'),
+          culture: this.checkArrayToString(element['culture'],'0'),
+          father: this.checkValue(element['father']),
+          gender: element['gender'],
+          house: element['house'],
+          isAlive: element['alive'],
+          name: this.checkArrayToString(element['age'],'name'),
+          performer: element['actor'],
+          related: this.checkArrayToArray(element['related'],'name'),
+          religion: element['religion'],
+          siblings: element['siblings'],
+          spouse: element['spouse'],
+          titles: element['titles'],
         };
-        console.log(listCharacters);
-        //this.characters.push(listCharacters);
-      }
+
+        this.characters.push(listCharacters);
+      }.bind(this));
+      console.log(this.characters);
     });
   }
 
-  checkArray(element: Array<any>, column: string){
+  //Transforma un array a un string pasandole el array y la columna dentro de ese array que tiene que devolver
+  checkArrayToString(element: Array<any>, column: string){
     let result: string;
     if(element === null || element === undefined || !(column in element) || element[column] == ''){
       result = 'N/A';
-    } else {
+    } else{
       result = element[column];
     }
     return result;
   }
 
+  //Transforma un objeto a un array, pasandole el objeto y la columna a recoger dentro de ese objeto que tiene que devolver
+  checkArrayToArray(element: Array<any>, column: string){
+    let result: Array<string> = [];
+    if(element === null || element === undefined || element.length == 0){
+      result = ['N/A'];
+    } else{
+      for(let x = 0; x < element.length; x++){
+        result.push(element[x][column]);
+      }
+    }
+    return result;
+  }
+
+  //Chequea que los valores existen y si no existen devuelve respuesta N/A
   checkValue(element: any){
     let result: string;
     if(element === null || element === undefined || element === ''){
