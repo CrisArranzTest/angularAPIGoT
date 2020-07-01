@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CharactersService } from './service/characters.service';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -7,14 +6,7 @@ import { CharactersService } from './service/characters.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'angularAPIGoT';  
-  private characters: any;
+export class AppComponent {
+  title = 'angularAPIGoT';
 
-  constructor( private char: CharactersService ) {
-  }
-
-  ngOnInit(){
-    this.characters = this.char.getAllData();
-  }
 }

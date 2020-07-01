@@ -1,0 +1,24 @@
+.b__contenedor-principal{
+    background-image: url('../../../assets/img/HomePicture_chair.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.b__contenedor-textoLogo{
+    font-size: 10rem;
+}
+.b__contenedor-textoOpciones{
+    font-size: 2rem;
+}
+.b__contenedor-enlace{
+    color: white;
+    text-decoration:none;
+}
+.b__contenedor-enlace:hover{
+    color: rgba(11, 174, 202, 0.705);
+}
+
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}

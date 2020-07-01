@@ -1,0 +1,78 @@
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="row">Nombre</th>
+        <th scope="row">Edad</th>
+        <th scope="row">¿Vive?</th>
+        <th scope="row">Actor</th>
+        <th scope="row">Alianzas</th>
+        <th scope="row">Apariciones</th>
+        <th scope="row">Cultura</th>
+        <th scope="row">Muerte</th>
+        <th scope="row">Padre</th>
+        <th scope="row">Sexo</th>
+        <th scope="row">Casa</th>
+        <th scope="row">Imagen</th>
+        <th scope="row">Amantes</th>
+        <th scope="row">Origen</th>
+        <th scope="row">Relacionado</th>
+        <th scope="row">Religion</th>
+        <th scope="row">Temporadas</th>
+        <th scope="row">Herman@s</th>
+        <th scope="row">Cónyuge</th>
+        <th scope="row">Titulos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let character of characters">
+        <td scope="row">{{ character.name }}</td>
+        <td scope="row">{{ character.age === null ? 'N/A' : character.age.age }}</td>
+        <td scope="row">{{ character.alive === false ? 'NO' : 'SI' }}</td>
+        <td scope="row">{{ character.actor }}</td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let allegiance of character.allegiances">{{ allegiance }}</li>
+          </ul>
+        </td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let appearance of character.appearances">{{ appearance }}</li>
+          </ul>
+        </td>
+        <td scope="row">{{ character.culture }}</td>
+        <td scope="row">{{ character.death }}</td>
+        <td scope="row">{{ character.father }}</td>
+        <td scope="row">{{ character.gender === 'male' ? 'VARON' : 'MUJER' }}</td>
+        <td scope="row">{{ character.house }}</td>
+        <td scope="row"><img class="img--adjust-normal" src="{{ character.image }}"></td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let lovers of character.lovers">{{ lovers }}</li>
+          </ul>
+        </td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let origin of character.origin">{{ origin }}</li>
+          </ul>
+        </td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let related of character.related">{{ related.name }}</li>
+          </ul>
+        </td>
+        <td scope="row">{{ character.religion }}</td>
+        <td scope="row">{{ character.seasons }}</td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let siblings of character.siblings">{{ siblings }}</li>
+          </ul>
+        </td>
+        <td scope="row">{{ character.spouse }}</td>
+        <td scope="row">
+          <ul class="list--elements-table">
+            <li *ngFor="let titles of character.titles">{{ titles }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
