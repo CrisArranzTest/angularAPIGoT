@@ -12,4 +12,5 @@ export interface Characters {
     spouse: string,
     titles: Array<string>,
     performer: string,
+    image: string,
 }

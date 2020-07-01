@@ -20,21 +20,24 @@ export class CharactersComponent implements OnInit {
 
       let listCharacters: Characters;
       characters.forEach(function(element){
-        listCharacters = {
-          age: this.checkArrayToString(element['age'],'age'),
-          culture: this.checkArrayToString(element['culture'],'0'),
-          father: this.checkValue(element['father']),
-          gender: element['gender'],
-          house: element['house'],
-          isAlive: element['alive'],
-          name: this.checkArrayToString(element['age'],'name'),
-          performer: element['actor'],
-          related: this.checkArrayToArray(element['related'],'name'),
-          religion: element['religion'],
-          siblings: element['siblings'],
-          spouse: element['spouse'],
-          titles: element['titles'],
-        };
+        if(element['image'] !== '' && element['image'] !== undefined && element['image'] !== null){
+          listCharacters = {
+            age: this.checkArrayToString(element['age'],'age'),
+            culture: this.checkArrayToString(element['culture'],'0'),
+            father: this.checkValue(element['father']),
+            gender: element['gender'],
+            house: element['house'],
+            isAlive: element['alive'],
+            name: element['name'],
+            performer: element['actor'],
+            related: this.checkArrayToArray(element['related'],'name'),
+            religion: element['religion'],
+            siblings: element['siblings'],
+            spouse: element['spouse'],
+            titles: element['titles'],
+            image: element['image']
+          };
+        }
 
         this.characters.push(listCharacters);
       }.bind(this));
