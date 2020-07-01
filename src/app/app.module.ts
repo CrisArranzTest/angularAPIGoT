@@ -9,6 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailCharacterComponent } from './components/detail-character/detail-character.component';
 import { HousesComponent } from './components/houses/houses.component';
 import { DetailHousesComponent } from './components/detail-houses/detail-houses.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CronologyComponent } from './components/cronology/cronology.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { DetailHousesComponent } from './components/detail-houses/detail-houses.
     HomeComponent,
     DetailCharacterComponent,
     HousesComponent,
-    DetailHousesComponent
+    DetailHousesComponent,
+    FooterComponent,
+    HeaderComponent,
+    CronologyComponent
   ],
   imports: [
     BrowserModule,

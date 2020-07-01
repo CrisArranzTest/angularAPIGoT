@@ -7,6 +7,11 @@ html, body{
     color: white;
 }
 
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 @font-face {
     font-family: GameOfThrone;
     src: url(assets/typography/GameOfThrones.ttf) format("opentype");
