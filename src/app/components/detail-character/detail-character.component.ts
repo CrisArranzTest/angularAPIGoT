@@ -37,6 +37,7 @@ export class DetailCharacterComponent implements OnInit {
         titles: characters['titles'],
       };
       this.characters = listCharacters;
+      console.log(this.characters);
     });
   }
 

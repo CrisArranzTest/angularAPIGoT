@@ -1,0 +1,22 @@
+.b__contenedor-tabla{
+    font-size: 0.9rem;
+}
+.b__contenedor-enlace{
+    color: white;
+    text-decoration:none;
+}
+.b__contenedor-enlace:hover{
+    color: rgba(11, 174, 202, 0.705);
+}
+.b__img-adjust-normal{
+    width: 13.5rem;
+    height: 19rem;
+}
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+.b__listCharacter-info-list{
+    height: 25rem;
+    overflow-y: scroll;
+}
