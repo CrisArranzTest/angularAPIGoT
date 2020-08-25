@@ -33,9 +33,9 @@ export class DetailCharacterComponent implements OnInit {
         performer: this.checkValue(characters['actor']),
         related: this.checkArrayToArray(characters['related'],'name'),
         religion: this.checkArrayToString(characters['religion'],'0'),
-        siblings: this.checkArrayToArray(characters['siblings'],'0'),
+        siblings: this.checkArrayToArray(characters['siblings'],null),
         spouse: this.checkArrayToString(characters['spouse'],'0'),
-        titles: this.checkArrayToArray(characters['titles'],'0'),
+        titles: this.checkArrayToArray(characters['titles'],null),
       };
       this.characters = listCharacters;
       console.log(this.characters);
@@ -60,7 +60,7 @@ export class DetailCharacterComponent implements OnInit {
       result = ['N/A'];
     } else{
       for(let x = 0; x < element.length; x++){
-        result.push(element[x][column]);
+        column === null ? result.push(element[x]) : result.push(element[x][column]);
       }
     }
     return result;
