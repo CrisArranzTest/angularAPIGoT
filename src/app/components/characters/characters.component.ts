@@ -21,7 +21,7 @@ export class CharactersComponent implements OnInit {
         if(element['image'] !== '' && element['image'] !== undefined && element['image'] !== null){
           var listCharacters: any = {
             name: element['name'],
-            image: element['image'],
+            image: element['image']
           };
           this.characters.push(listCharacters);
         }
