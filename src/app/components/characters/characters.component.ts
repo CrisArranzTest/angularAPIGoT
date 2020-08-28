@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CharactersService } from '../../service/characters/characters.service';
+
+import { Characters } from '../../interface/characters/characters';
 
 
 @Component({
@@ -12,16 +15,16 @@ export class CharactersComponent implements OnInit {
 
   private characters: Array<any> = [];
 
-  constructor( private char: CharactersService ) {
+  constructor(private char: CharactersService) {
   }
 
   ngOnInit(){
-    this.char.getAllData().subscribe((characters: any[]) => {
-      characters.forEach(function(element){
-        if(element['image'] !== '' && element['image'] !== undefined && element['image'] !== null){
-          var listCharacters: any = {
-            name: element['name'],
-            image: element['image']
+    this.char.getAllData().subscribe((characters: Array<any>) => {
+      characters.forEach(function(character: Characters) {
+        if(character.image !== '' && character.image !== undefined && character.image !== null) {
+          const listCharacters: any = {
+            name: character.name,
+            image: character.image
           };
           this.characters.push(listCharacters);
         }

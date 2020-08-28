@@ -1,2 +1,15 @@
 <app-header></app-header>
-<p>houses works!</p>
+<div class="row">
+    <div class="col-12">
+      <div class="b__contenedor-listHouses">
+        <div *ngFor="let house of houses" class="d-inline-flex m-2 p-2">
+          <div class="b__contenedor-house">
+            <a class="b__contenedor-enlace" routerLink="{{ house?.name }}">
+              <img class="b__img-adjust-normal" src="{{ house?.logo }}">
+              <p class="text-center">{{ house?.name }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

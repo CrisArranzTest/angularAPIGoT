@@ -1,16 +1,16 @@
 export interface Characters {
-    name: string,
-    age: string,
-    isAlive: boolean,
-    culture: string,
-    father: string,
-    gender: string,
-    house: string,
-    related: Array<string>,
-    religion: string,
-    siblings: Array<string>,
-    spouse: string,
-    titles: Array<string>,
-    performer: string,
-    image: string,
+    name: string;
+    age: object;
+    alive: boolean;
+    culture: Array<string>;
+    father: string;
+    gender: string;
+    house: string;
+    related: Array<string>;
+    religion: Array<string>;
+    siblings: Array<string>;
+    spouse: Array<string>;
+    titles: Array<string>;
+    actor: string;
+    image: string;
 }

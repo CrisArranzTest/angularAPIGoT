@@ -14,7 +14,11 @@ export class CharactersService {
     return this.http.get(this._url);
   }
 
-  getCharacterData(name: string){
+  getCharacterData(name: string) {
     return this.http.get(this._url + '/' + name);
+  }
+
+  getAllCharactersByHouse (name: string){
+    return this.http.get(this._url + '/byHouse/' + name);
   }
 }

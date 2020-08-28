@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { CharactersService } from '../../service/characters/characters.service';
+
 import { Characters } from '../../interface/characters/characters';
 
 @Component({
@@ -11,46 +13,34 @@ import { Characters } from '../../interface/characters/characters';
 export class DetailCharacterComponent implements OnInit {
 
   private characters: Characters;
-  // tslint:disable-next-line: variable-name
-  private _nameSearch: string;
+  private nameSearch: string;
 
-  // tslint:disable-next-line: variable-name
-  constructor( private char: CharactersService, private _route: ActivatedRoute) {
+  constructor(private char: CharactersService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
-    this._nameSearch = this._route.snapshot.paramMap.get('name');
-    this.char.getCharacterData(this._nameSearch).subscribe((characters: any[]) => {
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    this.nameSearch = this.route.snapshot.paramMap.get('name');
+
+    this.char.getCharacterData(this.nameSearch).subscribe((characters: Characters) => {
       console.log(characters);
       const listCharacters: any = {
-        // tslint:disable-next-line: no-string-literal
-        name: this.checkValue(characters['name']),
-        // tslint:disable-next-line: no-string-literal
-        image: this.checkValue(characters['image']),
-        // tslint:disable-next-line: no-string-literal
-        age: this.checkArrayToString(characters['age'], 'age'),
-        // tslint:disable-next-line: no-string-literal
-        culture: this.checkArrayToString(characters['culture'], '0'),
-        // tslint:disable-next-line: no-string-literal
-        father: this.checkValue(characters['father']),
-        // tslint:disable-next-line: no-string-literal
-        gender: this.checkValue(characters['gender']),
-        // tslint:disable-next-line: no-string-literal
-        house: this.checkValue(characters['house']),
-        // tslint:disable-next-line: no-string-literal
-        isAlive: characters['alive'],
-        // tslint:disable-next-line: no-string-literal
-        performer: this.checkValue(characters['actor']),
-        // tslint:disable-next-line: no-string-literal
-        related: this.checkArrayToArray(characters['related'], 'name'),
-        // tslint:disable-next-line: no-string-literal
-        religion: this.checkArrayToString(characters['religion'], '0'),
-        // tslint:disable-next-line: no-string-literal
-        siblings: this.checkArrayToArray(characters['siblings'], null),
-        // tslint:disable-next-line: no-string-literal
-        spouse: this.checkArrayToString(characters['spouse'], '0'),
-        // tslint:disable-next-line: no-string-literal
-        titles: this.checkArrayToArray(characters['titles'], null),
+        nombre: this.checkValue(characters.name),
+        imagen: this.checkValue(characters.image),
+        edad: this.checkObjectToString(characters.age, 'age'),
+        cultura: this.checkArrayToString(characters.culture, '0'),
+        padre: this.checkValue(characters.father),
+        genero: this.checkValue(characters.gender),
+        casa: this.checkValue(characters.house),
+        vivo: characters.alive,
+        actor: this.checkValue(characters.actor),
+        relacionado: this.checkArrayToArray(characters.related, 'name'),
+        religion: this.checkArrayToString(characters.religion, '0'),
+        hermanos: this.checkArrayToArray(characters.siblings, null),
+        esposa: this.checkArrayToString(characters.spouse, '0'),
+        titulos: this.checkArrayToArray(characters.titles, null),
       };
       this.characters = listCharacters;
       console.log(this.characters);
@@ -58,7 +48,18 @@ export class DetailCharacterComponent implements OnInit {
   }
 
   // Transforma un array a un string pasandole el array y la columna dentro de ese array que tiene que devolver
-  checkArrayToString(element: Array<any>, column: string) {
+  checkArrayToString(element: Array<string>, column: string) {
+    let result: string;
+    if (element === null || element === undefined || !(column in element) || element[column] === '') {
+      result = 'N/A';
+    } else{
+      result = element[column];
+    }
+    return result;
+  }
+
+  // Transforma un objeto a un string pasandole el array y la columna dentro de ese array que tiene que devolver
+  checkObjectToString(element: object, column: string) {
     let result: string;
     if (element === null || element === undefined || !(column in element) || element[column] === '') {
       result = 'N/A';
@@ -74,7 +75,6 @@ export class DetailCharacterComponent implements OnInit {
     if(element === null || element === undefined || element.length === 0){
       result = ['N/A'];
     } else {
-      // tslint:disable-next-line: prefer-for-of
       for (let x = 0; x < element.length; x++) {
         column === null ? result.push(element[x]) : result.push(element[x][column]);
       }
