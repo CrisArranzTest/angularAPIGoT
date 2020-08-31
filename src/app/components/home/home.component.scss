@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    min-height: calc(100vh - 60px);
 }
 .b__contenedor-textoLogo{
     font-size: 10rem;

@@ -6,19 +6,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CharactersService {
 
-  private _url: string = 'https://api.got.show/api/show/characters';
+  private url = 'https://api.got.show/api/show/';
 
   constructor(private http: HttpClient) { }
 
-  getAllData(){
-    return this.http.get(this._url);
+  getAllData() {
+    return this.http.get(this.url + 'characters');
   }
 
   getCharacterData(name: string) {
-    return this.http.get(this._url + '/' + name);
+    return this.http.get(this.url + 'characters/' + name);
   }
 
-  getAllCharactersByHouse (name: string){
-    return this.http.get(this._url + '/byHouse/' + name);
+  getAllCharactersByHouse(name: string) {
+    return this.http.get(this.url + 'characters/byHouse/' + name);
+  }
+
+  getAllCharactersByAge() {
+    return this.http.get(this.url + 'ages/');
   }
 }

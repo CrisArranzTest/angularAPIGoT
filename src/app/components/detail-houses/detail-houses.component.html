@@ -1,4 +1,3 @@
-<app-header></app-header>
 <table class="table table-striped table-dark b__contenedor-tabla">
     <thead>
         <tr>
@@ -32,7 +31,13 @@
                 </ul>
             </td>
             <td class="b__listHouse-info">{{ houses?.region }}</td>
-            <td class="b__listHouse-info">{{ houses?.religion }}</td>
+            <td class="b__listHouse-info">
+                <ul class="b__listHouse-info-list">
+                    <li *ngFor="let religion of houses?.religion">
+                        {{ religion }}
+                    </li>
+                </ul>
+            </td>
             <td class="b__listHouse-info">{{ houses?.sello }}</td>
         </tr>
     </tbody>

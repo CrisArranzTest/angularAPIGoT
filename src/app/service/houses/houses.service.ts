@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HousesService {
 
-  private _url: string = 'https://api.got.show/api/show/houses';
+  private url = 'https://api.got.show/api/show/';
 
   constructor(private http: HttpClient) { }
 
   getAllData() {
-    return this.http.get(this._url);
+    return this.http.get(this.url + 'houses');
   }
 
   getHouseData(name: string) {
-    return this.http.get(this._url + '/' + name);
+    return this.http.get(this.url + 'houses/' + name);
   }
 }

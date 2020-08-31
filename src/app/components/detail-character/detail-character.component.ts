@@ -52,7 +52,7 @@ export class DetailCharacterComponent implements OnInit {
     let result: string;
     if (element === null || element === undefined || !(column in element) || element[column] === '') {
       result = 'N/A';
-    } else{
+    } else {
       result = element[column];
     }
     return result;
@@ -63,7 +63,7 @@ export class DetailCharacterComponent implements OnInit {
     let result: string;
     if (element === null || element === undefined || !(column in element) || element[column] === '') {
       result = 'N/A';
-    } else{
+    } else {
       result = element[column];
     }
     return result;
@@ -72,11 +72,12 @@ export class DetailCharacterComponent implements OnInit {
   // Transforma un objeto a un array, pasandole el objeto y la columna a recoger dentro de ese objeto que tiene que devolver
   checkArrayToArray(element: Array<any>, column: string) {
     let result: Array<string> = [];
-    if(element === null || element === undefined || element.length === 0){
+    if (element === null || element === undefined || element.length === 0) {
       result = ['N/A'];
     } else {
-      for (let x = 0; x < element.length; x++) {
-        column === null ? result.push(element[x]) : result.push(element[x][column]);
+      console.log(element);
+      for (const x of element) {
+        column === null ? result.push(x) : result.push(x[column]);
       }
     }
     return result;

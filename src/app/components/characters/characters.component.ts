@@ -18,10 +18,10 @@ export class CharactersComponent implements OnInit {
   constructor(private char: CharactersService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.char.getAllData().subscribe((characters: Array<any>) => {
       characters.forEach(function(character: Characters) {
-        if(character.image !== '' && character.image !== undefined && character.image !== null) {
+        if (character.image !== '' && character.image !== undefined && character.image !== null) {
           const listCharacters: any = {
             name: character.name,
             image: character.image
