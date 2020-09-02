@@ -11,7 +11,9 @@ import { Characters } from '../../interface/characters/characters';
 })
 export class CronologyComponent implements OnInit {
 
-  private characters: Array<any> = [];
+  private characters: {range: number, info: Array<Array<any>>};
+  private charactersInfo: Array<any> = [];
+  private charactersRange: Array<number>;
 
   constructor(private char: CharactersService) {
   }
@@ -19,20 +21,22 @@ export class CronologyComponent implements OnInit {
   ngOnInit() {
     this.char.getAllData().subscribe((characters: Array<any>) => {
       characters.forEach(function(character: Characters) {
-        if (this.checkArrayToString(character.age, 'age') !== 'N/A' && character.age !== null) {
+        if (this.checkArrayToString(character.age, 'age') !== 'N/A' && character.age !== null && character.image !== undefined) {
           const listCharacters: any = {
             name: character.name,
             age: this.checkArrayToString(character.age, 'age'),
             image: character.image,
-            position: 0
+            range: this.getTruncByTens(this.checkArrayToString(character.age, 'age'))
           };
-          this.characters.push(listCharacters);
+          this.charactersInfo.push(listCharacters);
         }
       }.bind(this));
 
-      this.characters = this.orderCharactersDesc(this.characters, 'age');
-      this.characters = this.directionCronologyCharacters(this.characters, 'position');
-      console.log(this.characters);
+      this.charactersInfo = this.orderCharactersDesc(this.charactersInfo, 'age');
+      this.charactersRange = this.getArrayRange(this.charactersInfo);
+      console.log(this.charactersInfo);
+      console.log(this.charactersRange);
+      this.getCharacter(this.charactersRange, this.charactersInfo);
     });
   }
 
@@ -64,14 +68,6 @@ export class CronologyComponent implements OnInit {
     return characters;
   }
 
-  // Le da los valores correctos al array para colocarlo en la web
-  directionCronologyCharacters(characters: Array<any>, position: string) {
-    for (let x = 0; x < characters.length; x++) {
-      x % 2 === 0 ? characters[x][position] = 0 : characters[x][position] = 1;
-    }
-    return characters;
-  }
-
   // Transforma un array a un string pasandole el array y la columna dentro de ese array que tiene que devolver
   checkArrayToString(element: Array<string>, column: string) {
     let result: string;
@@ -81,5 +77,40 @@ export class CronologyComponent implements OnInit {
       result = element[column];
     }
     return result;
+  }
+
+  // Obtenemos un array con los rangos de los characters
+  getArrayRange(character: Array<any>) {
+    let arrayRange: Array<number> = [];
+    for (let x = 0 ; x < character.length ; x++) {
+      arrayRange.push(character[x]['range']);
+    }
+
+    return arrayRange.filter((v, i, a) => a.indexOf(v) === i);
+
+  }
+
+  // Obtenemos el array final de los characters
+  getCharacter(range: Array<number>, info: Array<any>) {
+    let character: Array<{range?: number, info?: Array<any>}> = [];
+
+    for (let x = 0 ; x < range.length ; x++) {
+      character[x].range = range[x];
+      for (let y = 0 ; y < info.length ; y++) {
+        if (range[x] === info[y]['range']) {
+          character[x].info.push(info[y]);
+        }
+      }
+    }
+
+    console.log(character);
+
+    return character;
+  }
+
+
+  // Obtenemos el redondeo por decenas
+  getTruncByTens(age: number) {
+    return Math.trunc(age / 10) * 10;
   }
 }

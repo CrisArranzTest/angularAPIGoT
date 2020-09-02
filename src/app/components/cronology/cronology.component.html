@@ -1,14 +1,19 @@
 <div class="row">
-    <div class="col-12">
-      <div class="b__contenedor-listCharacters">
-        <div *ngFor="let character of characters" class="d-inline-flex m-2 p-2">
-          <div class="b__contenedor-character" [ngClass]="{ left: character?.position === 0,  right: character?.position === 1}">
-            <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
-              <img class="b__img-adjust-normal" src="{{ character?.image }}">
-              <p class="text-center">{{ character?.name }}</p>
-            </a>
+  <div class="col-12">
+    <div class="b__contenedor-listCharacters">
+      <div *ngFor="let range of characterRange" class="row">
+        <div class="col-12">
+          <p> El Rango es: {{ range }} </p>
+          <div *ngFor="let character of characters" class="d-inline-flex m-2 p-2">
+            <div class="b__contenedor-character">
+              <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
+                <img class="b__img-adjust-normal" src="{{ character?.image }}">
+                <p class="text-center">{{ character?.name }}</p>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
