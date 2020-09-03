@@ -1,3 +1,30 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li *ngFor="let range of charactersRange; let i = index" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" [ngClass]="{'active': i === 0}"></li>
+  </ol>
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <div class="carousel-inner">
+        <div *ngFor="let data of characters; let i = index" class="row carousel-item" [ngClass]="{'active': i === 0}">
+          <div class="col-12">
+            <h3 class="mb-0">El Rango es: {{data?.range}}</h3>
+            <div *ngFor="let character of data?.info" class="d-inline-flex m-2 p-2">
+              <div class="b__contenedor-character">
+                <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
+                  <img class="b__img-adjust-normal" src="{{ character?.image }}">
+                  <p class="text-center">{{ character?.name }}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
 <div class="row">
   <div class="col-12">
     <div class="b__contenedor-listCharacters accordion" id="accordionGoT">
@@ -25,3 +52,4 @@
     </div>
   </div>
 </div>
+-->
