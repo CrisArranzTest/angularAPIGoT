@@ -11,7 +11,7 @@ import { Characters } from '../../interface/characters/characters';
 })
 export class CronologyComponent implements OnInit {
 
-  private characters: {range: number, info: Array<Array<any>>};
+  private characters: Array<any> = [];
   private charactersInfo: Array<any> = [];
   private charactersRange: Array<number>;
 
@@ -34,9 +34,9 @@ export class CronologyComponent implements OnInit {
 
       this.charactersInfo = this.orderCharactersDesc(this.charactersInfo, 'age');
       this.charactersRange = this.getArrayRange(this.charactersInfo);
-      console.log(this.charactersInfo);
-      console.log(this.charactersRange);
-      this.getCharacter(this.charactersRange, this.charactersInfo);
+      this.characters = this.getCharacter(this.charactersRange, this.charactersInfo);
+
+      console.log(this.characters);
     });
   }
 
@@ -92,18 +92,15 @@ export class CronologyComponent implements OnInit {
 
   // Obtenemos el array final de los characters
   getCharacter(range: Array<number>, info: Array<any>) {
-    let character: Array<{range?: number, info?: Array<any>}> = [];
-
-    for (let x = 0 ; x < range.length ; x++) {
-      character[x].range = range[x];
-      for (let y = 0 ; y < info.length ; y++) {
-        if (range[x] === info[y]['range']) {
-          character[x].info.push(info[y]);
-        }
+    let character: Array<any> = [];
+    
+    range.forEach(function(element) {
+      let range: any = {
+        range: element,
+        info: this.getInfoByRage(element, info)
       }
-    }
-
-    console.log(character);
+      character.push(range);
+    }.bind(this));
 
     return character;
   }
@@ -112,5 +109,17 @@ export class CronologyComponent implements OnInit {
   // Obtenemos el redondeo por decenas
   getTruncByTens(age: number) {
     return Math.trunc(age / 10) * 10;
+  }
+
+  // Obtenemos el array con los datos filtrados por rango
+  getInfoByRage(range: number, info: Array<any>) {
+    let arrayInfo: Array<any> = [];
+    info.forEach(function(element) {
+      if (range === element.range) {
+        arrayInfo.push(element);
+      }
+    });
+
+    return arrayInfo;
   }
 }
