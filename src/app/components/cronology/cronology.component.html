@@ -1,15 +1,23 @@
 <div class="row">
   <div class="col-12">
-    <div class="b__contenedor-listCharacters">
+    <div class="b__contenedor-listCharacters accordion" id="accordionGoT">
       <div *ngFor="let data of characters" class="row">
         <div class="col-12">
-          <p> El Rango es: {{ data?.range }} </p>
-          <div *ngFor="let character of data?.info" class="d-inline-flex m-2 p-2">
-            <div class="b__contenedor-character">
-              <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
-                <img class="b__img-adjust-normal" src="{{ character?.image }}">
-                <p class="text-center">{{ character?.name }}</p>
-              </a>
+          <div id="heading{{ data?.range }}">
+            <h2 class="mb-0">
+              <button class="btn btn-outline-light btn-block" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + data?.range" aria-expanded="true" [attr.aria-controls]="'collapse' + data?.range">
+                El Rango es: {{ data?.range }}
+              </button>
+            </h2>
+          </div>
+          <div id="collapse{{ data?.range }}" class="collapse" [attr.aria-labelledby]="'heading' + data?.range" data-parent="#accordionGoT">
+            <div *ngFor="let character of data?.info" class="d-inline-flex m-2 p-2 collapse">
+              <div class="b__contenedor-character">
+                <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
+                  <img class="b__img-adjust-normal" src="{{ character?.image }}">
+                  <p class="text-center">{{ character?.name }}</p>
+                </a>
+              </div>
             </div>
           </div>
         </div>
