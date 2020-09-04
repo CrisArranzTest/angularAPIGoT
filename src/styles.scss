@@ -12,6 +12,12 @@ html, body{
     margin-right: 0px;
 }
 
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 @font-face {
     font-family: GameOfThrone;
     src: url(assets/typography/GameOfThrones.ttf) format("opentype");

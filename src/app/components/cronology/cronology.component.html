@@ -1,55 +1,25 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li *ngFor="let range of charactersRange; let i = index" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" [ngClass]="{'active': i === 0}"></li>
-  </ol>
-  <div class="row justify-content-md-center">
-    <div class="col-6">
-      <div class="carousel-inner">
-        <div *ngFor="let data of characters; let i = index" class="row carousel-item" [ngClass]="{'active': i === 0}">
-          <div class="col-12">
-            <h3 class="mb-0">El Rango es: {{data?.range}}</h3>
-            <div *ngFor="let character of data?.info" class="d-inline-flex m-2 p-2">
-              <div class="b__contenedor-character">
-                <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
-                  <img class="b__img-adjust-normal" src="{{ character?.image }}">
-                  <p class="text-center">{{ character?.name }}</p>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--
-<div class="row">
-  <div class="col-12">
-    <div class="b__contenedor-listCharacters accordion" id="accordionGoT">
-      <div *ngFor="let data of characters" class="row">
+<app-header></app-header>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-3 align-self-start">
+      <div class="row">
         <div class="col-12">
-          <div id="heading{{ data?.range }}">
-            <h2 class="mb-0">
-              <button class="btn btn-outline-light btn-block" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + data?.range" aria-expanded="true" [attr.aria-controls]="'collapse' + data?.range">
-                El Rango es: {{ data?.range }}
-              </button>
-            </h2>
-          </div>
-          <div id="collapse{{ data?.range }}" class="collapse" [attr.aria-labelledby]="'heading' + data?.range" data-parent="#accordionGoT">
-            <div *ngFor="let character of data?.info" class="d-inline-flex m-2 p-2 collapse">
-              <div class="b__contenedor-character">
-                <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
-                  <img class="b__img-adjust-normal" src="{{ character?.image }}">
-                  <p class="text-center">{{ character?.name }}</p>
-                </a>
-              </div>
-            </div>
-          </div>
+          <p class="b__contenedor-tituloRangos">RANGOS EDADES</p>
+          <ul>
+            <li *ngFor="let range of charactersRange" (click)="onClick(range)" class="b__contenedor-enlaceRangos arrow-right"> {{ range }} </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 align-self-start">
+      <div *ngFor="let character of charactersInfo" class="d-inline-flex m-2 p-2">
+        <div class="b__contenedor-character">
+          <a class="b__contenedor-enlace" routerLink="../characters/{{ character?.name }}">
+            <img class="b__img-adjust-normal" src="{{ character?.image }}">
+            <p class="text-center">{{ character?.name }}</p>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
--->

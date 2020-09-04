@@ -1,45 +1,54 @@
-<table class="table table-striped table-dark b__contenedor-tabla">
-    <thead>
-        <tr>
-            <th *ngFor="let colName of characters | keyvalue" scope="col">{{ colName.key }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="b__listCharacter-info">{{ characters?.actor }}</td>
-            <td class="b__listCharacter-info">
-                <a class="b__contenedor-enlace" routerLink="../../houses/{{ characters?.casa }}"> {{ characters?.casa }} </a>
-            </td>
-            <td class="b__listCharacter-info">{{ characters?.cultura }}</td>
-            <td class="b__listCharacter-info">{{ characters?.edad }}</td>
-            <td class="b__listCharacter-info">{{ characters?.esposa }}</td>
-            <td class="b__listCharacter-info">{{ characters?.genero }}</td>
-            <td class="b__listCharacter-info">
-                <ul class="b__listCharacter-info-list">
-                    <li *ngFor="let hermanos of characters?.hermanos">
-                        {{ hermanos }}
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listCharacter-info"><img class="b__img-adjust-normal" src="{{ characters?.imagen }}"></td>
-            <td class="b__listCharacter-info">{{ characters?.nombre }}</td>
-            <td class="b__listCharacter-info">{{ characters?.padre }}</td>
-            <td class="b__listCharacter-info">
-                <ul class="b__listCharacter-info-list">
-                    <li *ngFor="let relacionado of characters?.relacionado">
-                        <a class="b__contenedor-enlace" routerLink="../{{ relacionado }}"> {{ relacionado }} </a>
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listCharacter-info">{{ characters?.religion }}</td>
-            <td class="b__listCharacter-info">
-                <ul class="b__listCharacter-info-list">
-                    <li *ngFor="let titulos of characters?.titulos">
-                        {{ titulos }}
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listCharacter-info">{{ characters?.vivo }}</td>
-        </tr>
-    </tbody>
-</table>
+<app-header></app-header>
+<div class="container">
+    <table class="table table-striped table-dark b__contenedor-tabla">
+        <thead>
+            <tr>
+                <th *ngFor="let colName of characters | keyvalue" scope="col">{{ colName.key }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="b__listCharacter-info">{{ characters?.actor }}</td>
+                <td class="b__listCharacter-info">
+                    <a class="b__contenedor-enlace" routerLink="../../houses/{{ characters?.casa }}"> {{ characters?.casa }} </a>
+                </td>
+                <td class="b__listCharacter-info">{{ characters?.cultura }}</td>
+                <td class="b__listCharacter-info">{{ characters?.edad }}</td>
+                <td class="b__listCharacter-info">
+                    <a *ngIf="characters?.esposa !== 'N/A'" class="b__contenedor-enlace" routerLink="../{{ characters?.esposa }}"> {{ characters?.esposa }} </a>
+                    <span *ngIf="characters?.esposa === 'N/A'"> {{ characters?.esposa }} </span>
+                </td>
+                <td class="b__listCharacter-info">{{ characters?.genero }}</td>
+                <td class="b__listCharacter-info">
+                    <ul class="b__listCharacter-info-list">
+                        <li *ngFor="let hermanos of characters?.hermanos">
+                            <a class="b__contenedor-enlace" routerLink="../{{ hermanos }}">{{ hermanos }}</a>
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listCharacter-info"><img class="b__img-adjust-normal" src="{{ characters?.imagen }}"></td>
+                <td class="b__listCharacter-info">{{ characters?.nombre }}</td>
+                <td class="b__listCharacter-info">
+                    <a *ngIf="characters?.padre !== 'N/A'" class="b__contenedor-enlace" routerLink="../{{ characters?.padre }}"> {{ characters?.padre }} </a>
+                    <span *ngIf="characters?.padre === 'N/A'"> {{ characters?.padre }} </span>
+                </td>
+                <td class="b__listCharacter-info">
+                    <ul class="b__listCharacter-info-list">
+                        <li *ngFor="let relacionado of characters?.relacionado">
+                            <a class="b__contenedor-enlace" routerLink="../{{ relacionado }}"> {{ relacionado }} </a>
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listCharacter-info">{{ characters?.religion }}</td>
+                <td class="b__listCharacter-info">
+                    <ul class="b__listCharacter-info-list">
+                        <li *ngFor="let titulos of characters?.titulos">
+                            {{ titulos }}
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listCharacter-info">{{ characters?.vivo }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,44 +1,47 @@
-<table class="table table-striped table-dark b__contenedor-tabla">
-    <thead>
-        <tr>
-            <th *ngFor="let colName of houses | keyvalue" scope="col">{{ colName.key }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="b__listHouse-info">
-                <ul class="b__listHouse-info-list">
-                    <li *ngFor="let aliados of houses?.aliados">
-                        <a class="b__contenedor-enlace" routerLink="../../houses/{{ aliados }}">{{ aliados }}</a>
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listHouse-info">
-                <ul class="b__listHouse-info-list">
-                    <li *ngFor="let asentamiento of houses?.asentamiento">
-                        {{ asentamiento }}
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listHouse-info"><img class="b__img-adjust-normal" src="{{ houses?.bandera }}"></td>
-            <td class="b__listHouse-info">{{ houses?.frase }}</td>
-            <td class="b__listHouse-info">{{ houses?.nombre }}</td>
-            <td class="b__listHouse-info">
-                <ul class="b__listHouse-info-list">
-                    <li *ngFor="let personaje of houses?.pertenecen">
-                        <a class="b__contenedor-enlace" routerLink="../../characters/{{ personaje }}">{{ personaje }}</a>
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listHouse-info">{{ houses?.region }}</td>
-            <td class="b__listHouse-info">
-                <ul class="b__listHouse-info-list">
-                    <li *ngFor="let religion of houses?.religion">
-                        {{ religion }}
-                    </li>
-                </ul>
-            </td>
-            <td class="b__listHouse-info">{{ houses?.sello }}</td>
-        </tr>
-    </tbody>
-</table>
+<app-header></app-header>
+<div class="container">
+    <table class="table table-striped table-dark b__contenedor-tabla">
+        <thead>
+            <tr>
+                <th *ngFor="let colName of houses | keyvalue" scope="col">{{ colName.key }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="b__listHouse-info">
+                    <ul class="b__listHouse-info-list">
+                        <li *ngFor="let aliados of houses?.aliados">
+                            <a class="b__contenedor-enlace" routerLink="../../houses/{{ aliados }}">{{ aliados }}</a>
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listHouse-info">
+                    <ul class="b__listHouse-info-list">
+                        <li *ngFor="let asentamiento of houses?.asentamiento">
+                            {{ asentamiento }}
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listHouse-info"><img class="b__img-adjust-normal" src="{{ houses?.bandera }}"></td>
+                <td class="b__listHouse-info">{{ houses?.frase }}</td>
+                <td class="b__listHouse-info">{{ houses?.nombre }}</td>
+                <td class="b__listHouse-info">
+                    <ul class="b__listHouse-info-list">
+                        <li *ngFor="let personaje of houses?.pertenecen">
+                            <a class="b__contenedor-enlace" routerLink="../../characters/{{ personaje }}">{{ personaje }}</a>
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listHouse-info">{{ houses?.region }}</td>
+                <td class="b__listHouse-info">
+                    <ul class="b__listHouse-info-list">
+                        <li *ngFor="let religion of houses?.religion">
+                            {{ religion }}
+                        </li>
+                    </ul>
+                </td>
+                <td class="b__listHouse-info">{{ houses?.sello }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

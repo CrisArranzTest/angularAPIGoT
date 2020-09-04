@@ -122,4 +122,22 @@ export class CronologyComponent implements OnInit {
 
     return arrayInfo;
   }
+
+  onClick(val: any) {
+    this.charactersInfo = [];
+    this.characters.forEach(function(element) {
+      if (element.range === val) {
+        element.info.forEach(function(character) {
+          const listCharacters: any = {
+            name: character.name,
+            age: character.age,
+            image: character.image
+          };
+          this.charactersInfo.push(listCharacters);
+        }.bind(this));
+      }
+    }.bind(this));
+
+    console.log(this.charactersInfo);
+  }
 }

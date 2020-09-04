@@ -20,6 +20,23 @@
     color: rgba(11, 174, 202, 0.705);
 }
 
-.carousel-indicators{
-    position: relative;
+.b__contenedor-enlaceRangos{
+    font-size: 25px;
+}
+
+.b__contenedor-enlaceRangos.arrow-right{
+    width: 33%;
+    text-align: start;
+    transition: width 0.9s, text-align 0.9s;
+}
+
+.b__contenedor-enlaceRangos.arrow-right:hover{
+    cursor: pointer;
+    text-align: center;
+    color: rgba(11, 174, 202, 0.705);
+    width: 100%;
+}
+
+.b__contenedor-tituloRangos{
+    font-size: 1rem;
 }
